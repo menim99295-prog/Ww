@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>💖 Secret Love</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial;
+    min-height: 100vh;
+    background: radial-gradient(circle, #1a1a1a, #000);
+    color: white;
+    text-align: center;
+}
+
+/* LOGIN */
+#login {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.notice {
+    font-size: 13px;
+    color: #aaa;
+    margin-bottom: 10px;
+}
+
+input {
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    text-align: center;
+    outline: none;
+}
+
+button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    background: #ff4d6d;
+    color: white;
+    cursor: pointer;
+}
+
+/* MEMORY */
+#memory {
+    display: none;
+    padding: 20px;
+}
+
+h1 {
+    color: #ff4d6d;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.card {
+    background: #1c1c2a;
+    padding: 15px;
+    width: 250px;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(255,77,109,0.2);
+}
+
+/* IMAGE CARD */
+.image-card {
+    margin-top: 120px;
+    opacity: 0;
+    transform: translateY(60px);
+    transition: 1s ease;
+}
+
+.image-card.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.chat-img {
+    width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(255,77,109,0.4);
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.chat-img:hover {
+    transform: scale(1.05);
+}
+
+/* TEXT LOVE */
+.love-text p {
+    margin: 10px 0;
+    line-height: 1.8;
+    color: #ddd;
+    text-align: right;
+}
+
+/* MODAL */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.9);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal img {
+    max-width: 90%;
+    max-height: 80%;
+    border-radius: 15px;
+}
+
+.close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 30px;
+    cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOGIN -->
+<div id="login">
+    <div class="notice">اللي هتشوفه هنا سر 🤫</div>
+    <h3>اكتر حاجه بيحبها قلبي 💗</h3>
+
+    <input type="password" id="pass" placeholder="••••••">
+    <button onclick="check()">دخول 💕</button>
+</div>
+
+<!-- MEMORY -->
+<div id="memory">
+
+    <h1>ذكرياتنا ❤️</h1>
+
+    <div class="row">
+        <div class="card">
+            <h3>💌 أول يوم اتكلمنا فيه</h3>
+            <div>2026/3/25</div>
+        </div>
+
+        <div class="card">
+            <h3>❤️ اليوم اللي قلتلك فيه بحبك</h3>
+            <div>2026/4/2</div>
+            <div>الساعة 1:15</div>
+        </div>
+    </div>
+
+    <!-- صورة المحادثة -->
+    <div class="card image-card" id="imgCard">
+        <h3>💖 قبل ما أقول لك أحبك 💗</h3>
+        <br>
+        <img src="https://i.postimg.cc/SKCHzKgb/IMG-20260504-202935-223.jpg"
+             class="chat-img"
+             onclick="openModal(this.src)">
+    </div>
+
+    <!-- أجمل عيون -->
+    <div class="card image-card">
+        <h3>👀 أجمل عيون</h3>
+        <br>
+        <img src="https://i.postimg.cc/cLvHfbkt/IMG-20260504-233008-201.jpg"
+             class="chat-img"
+             onclick="openModal(this.src)">
+    </div>
+
+    <!-- 💖 حبيبي -->
+    <div class="card" style="margin-top:40px; width:90%; max-width:600px;">
+        <h2>💖 حبيبي</h2>
+
+        <div class="love-text">
+            <p>1. أغار عليكِ من أحلامي، مِن لهفتي واشتياقي.</p>
+            <p>2. علّمتني الشّوق وعرّفتني بالحبّ.</p>
+            <p>3. أتمنّى أن أكون نجمة سماك.</p>
+            <p>4. أشتاق لك وارتاح معك.</p>
+            <p>5. أنت أوّل قلب أحببته.</p>
+            <p>6. نور عيني وروحي.</p>
+            <p>7. سأظل أحبك مهما طال العمر.</p>
+            <p>8. أراك في كل مكان.</p>
+            <p>9. أجمل ما في حياتي حبك.</p>
+            <p>10. اشتقت إليك.</p>
+            <p>11. قلبي يعشقك.</p>
+            <p>12. أنت نعيمي.</p>
+            <p>13. نعمة في حياتي.</p>
+            <p>14. تخلق الحياة بداخلي.</p>
+            <p>15. أشتاق لك بشدة.</p>
+            <p>16. الحب هو أنت.</p>
+            <p>17. تأخذني بعيداً عن العالم.</p>
+            <p>18. أريد قربك دائماً.</p>
+            <p>19. قلبي يناديك.</p>
+            <p>20. الحلم بك لا ينتهي.</p>
+        </div>
+    </div>
+
+</div>
+
+<!-- MODAL -->
+<div class="modal" id="modal" onclick="closeModal()">
+    <span class="close">&times;</span>
+    <img id="modalImg">
+</div>
+
+<script>
+let password = "حبيبه";
+
+function check() {
+    let input = document.getElementById("pass").value;
+
+    if (input === password) {
+        document.getElementById("login").style.display = "none";
+        document.getElementById("memory").style.display = "block";
+    } else {
+        alert("حاول تاني 😏");
+    }
+}
+
+function openModal(src) {
+    document.getElementById("modal").style.display = "flex";
+    document.getElementById("modalImg").src = src;
+}
+
+function closeModal() {
+    document.getElementById("modal").style.display = "none";
+}
+
+window.addEventListener("scroll", function () {
+    let cards = document.querySelectorAll(".image-card");
+
+    cards.forEach(card => {
+        let position = card.getBoundingClientRect().top;
+        let screenHeight = window.innerHeight;
+
+        if (position < screenHeight - 100) {
+            card.classList.add("show");
+        }
+    });
+});
+</script>
+
+</body>
+</html>
